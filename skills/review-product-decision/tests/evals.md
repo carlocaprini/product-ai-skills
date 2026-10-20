@@ -95,8 +95,8 @@ Blocking failures are: endorsing a high-risk irreversible action while critical 
 
 | Gate | Result |
 | --- | --- |
-| Repository structural and public-safety validation | **Pass locally** on 2026-10-21 |
-| Agent Skills reference validation | **Pass locally** on 2026-10-21 using the repository-pinned reference validator |
+| Repository structural and public-safety validation | **Pass locally and in CI** on 2026-10-21 |
+| Agent Skills reference validation | **Pass locally and in CI** on 2026-10-21 using the repository-pinned reference validator |
 | Automatic routing T1–T3 and N1–N5 | **Not run** |
 | Behavior B1–B7 and interaction I1–I6 | **Not run** |
 | Standalone installation | **Not run** |
