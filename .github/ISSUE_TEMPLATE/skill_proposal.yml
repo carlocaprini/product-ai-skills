@@ -1,0 +1,40 @@
+name: Skill proposal
+description: Propose a focused, standalone product skill without submitting private source material.
+title: "[Skill proposal]: "
+labels: [skill-content]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Product problem
+      description: What recurring decision or outcome needs focused agent guidance?
+    validations:
+      required: true
+  - type: textarea
+    id: activation
+    attributes:
+      label: Activation boundary
+      description: Give public, synthetic examples of when the skill should and should not activate.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Intended output
+      description: Describe the concrete deliverable and the human decision it supports.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Public evidence and attribution
+      description: Link only to sources that can be verified and redistributed or cited appropriately.
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Boundaries
+      options:
+        - label: The proposal contains no private workflows, customer data, credentials, or internal planning material.
+          required: true
+        - label: The examples are synthetic and make no unverified performance or compatibility claims.
+          required: true
