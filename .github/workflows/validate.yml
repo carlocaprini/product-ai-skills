@@ -36,6 +36,13 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Validate structure
         run: python scripts/validate_repo.py . --structure-only
+      - name: Validate Agent Skills specification
+        run: |
+          for skill in skills/*; do
+            if [[ -d "$skill" ]]; then
+              skills-ref validate "$skill"
+            fi
+          done
 
   public-safety:
     name: Check public safety

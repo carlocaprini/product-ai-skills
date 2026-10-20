@@ -31,6 +31,7 @@ Run:
 python -m pip install -r requirements-dev.txt
 python scripts/validate_repo.py .
 python -m unittest discover -s tests -v
+for skill in skills/*; do if [ -d "$skill" ]; then skills-ref validate "$skill"; fi; done
 ```
 
 Both commands must pass before review. They are deterministic and make no network or paid-provider calls.
