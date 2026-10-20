@@ -136,8 +136,8 @@ C1 pair verdict: **Not assessed**. C2 pair verdict: **Not assessed**. Retain fai
 
 | Gate | Result |
 | --- | --- |
-| Repository structural and public-safety validation | Previous pass is scoped to its tested revision; fresh validation is pending for this correction. |
-| Agent Skills reference validation | Previous pass is scoped to its tested revision and pinned validator; fresh validation is pending for this correction. |
+| Repository structural and public-safety validation | **Pass** locally and in CI on 2026-10-21 for commit `978ba234031ae797117d7290bb75fc23973d07eb` (CI run `39510214504`). |
+| Agent Skills reference validation | **Pass** locally and in CI on 2026-10-21 for commit `978ba234031ae797117d7290bb75fc23973d07eb`, using the repository-pinned validator (CI run `39510214504`). |
 | Automatic routing T1–T3 and N1–N5 | **Not run** |
 | Behavior B1–B7 and interaction I1–I6 | **Not run** |
 | Controlled comparisons C1–C2, ON versus OFF | **Not run**; four arm records and two pair verdicts are reserved above. |
