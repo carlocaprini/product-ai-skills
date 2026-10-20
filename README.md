@@ -27,14 +27,15 @@ Empty package directories and placeholder skills are not kept in the repository.
 
 ## Validation
 
-The checks use only the Python standard library and do not call an AI provider or external service:
+The checks use a version-pinned YAML parser and do not call an AI provider or external service:
 
 ```sh
+python -m pip install -r requirements-dev.txt
 python scripts/validate_repo.py .
 python -m unittest discover -s tests -v
 ```
 
-The validator checks repository safety, portable `SKILL.md` frontmatter, package boundaries, local Markdown references, and common secret or local-path leaks. Automated checks complement, but do not replace, human review of everything intended to become public.
+The validator checks repository safety, valid typed `SKILL.md` YAML frontmatter, package boundaries, inline and reference-style local Markdown links, and common secret or local-path leaks. CI also scans every commit introduced by a pull request so that adding and later deleting unsafe content does not bypass the public-safety gate. Automated checks complement, but do not replace, human review of everything intended to become public.
 
 ## Contributing
 

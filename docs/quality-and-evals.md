@@ -6,6 +6,8 @@ Quality evidence is separated into three distinct layers. A result in one layer 
 
 Static checks run automatically and without AI-provider credentials. They cover repository safety, package naming, `SKILL.md` frontmatter, local references, package confinement, and the validator's own tests.
 
+When the first package is introduced, CI must also run a version-pinned Agent Skills reference validator. Repository checks remain in place for the stricter public-safety and package-boundary rules defined here.
+
 Static validity does not mean that a skill installs, triggers correctly, produces a useful result, or works in a particular client.
 
 ## Routing and behavioral evaluation

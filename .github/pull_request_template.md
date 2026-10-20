@@ -11,5 +11,6 @@ List the validation performed and, where relevant, distinguish expected evaluati
 - [ ] The diff contains no credentials, private paths, customer data, sensitive transcripts, or internal planning material.
 - [ ] Examples are synthetic and sources are attributable.
 - [ ] Installation, compatibility, evaluation, and release claims are backed by evidence in this change.
+- [ ] `python -m pip install -r requirements-dev.txt` completes.
 - [ ] `python scripts/validate_repo.py .` passes.
 - [ ] `python -m unittest discover -s tests -v` passes.

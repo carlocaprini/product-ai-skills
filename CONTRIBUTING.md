@@ -28,6 +28,7 @@ See [docs/authoring.md](docs/authoring.md) for the portable format and [docs/qua
 Run:
 
 ```sh
+python -m pip install -r requirements-dev.txt
 python scripts/validate_repo.py .
 python -m unittest discover -s tests -v
 ```
