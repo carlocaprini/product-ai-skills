@@ -32,7 +32,7 @@ Fictional companies, figures and responses below are **illustrative oracles**, n
 
 **Expected first reply:**
 
-**DECIDE NOW — run a small, opt-in pilot, not a full launch.** The two customer requests are user-reported demand; the engineering estimate is requester-provided. Broad demand is unknown, but the test is inexpensive and reversible. **Next:** agree what first-session guidance failure it should reduce, enable for a limited audience and check that outcome at a defined review point; turn it off if it adds confusion. Don't impose a PRD or a month of research first. Do not invent a success threshold.
+**DECIDE NOW — run a small, opt-in pilot, not a full launch.** The two customer requests are user-reported demand; the one-day estimate is Engineering-reported (provided/unverified). Broad demand is unknown, but the test is inexpensive and reversible. **Next:** agree what first-session guidance failure it should reduce, enable for a limited audience and check that outcome at a defined review point; turn it off if it adds confusion. Don't impose a PRD or a month of research first. Do not invent a success threshold.
 
 ### E4 — pressure plus apparently divergent evidence
 
