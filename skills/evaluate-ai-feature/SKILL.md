@@ -1,6 +1,6 @@
 ---
 name: evaluate-ai-feature
-description: Designs a release-readiness evaluation for an AI feature, covering success criteria, golden and negative cases, quality thresholds, cost, latency, fallback, and go/no-go evidence. Use when deciding whether an AI-powered feature is ready to ship. Do not use for model selection from public benchmarks alone, agent permission boundaries, or API compatibility review.
+description: Designs a release-readiness evaluation for an AI feature, covering success criteria, golden and negative cases, quality thresholds, cost, latency, fallback, and go/no-go evidence. Use when deciding whether an AI-powered feature is ready to ship.
 ---
 
 # Evaluate AI Feature
