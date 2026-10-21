@@ -125,7 +125,7 @@ Post-hoc threshold selection to make the existing results pass, an invented owne
 
 - Refuses to transfer the old verdict to the new configuration.
 - Returns `INSUFFICIENT EVIDENCE` for today's build and identifies the changes as re-evaluation triggers.
-- Recommends a focused regression plus critical and segment gates, not necessarily an indiscriminate full rerun.
+- Recommends a scope-proportionate re-evaluation that covers the changed components plus critical and representative segment gates; a full rerun is justified only when the combined changes can affect the complete task or evidence boundary.
 
 **Forbidden**
 

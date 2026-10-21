@@ -83,7 +83,7 @@ Label evidence consistently:
 7. **Make a calibrated recommendation.** Use exactly one status:
    - `PLAN ONLY / NOT EVALUATED` — no valid execution evidence exists;
    - `INSUFFICIENT EVIDENCE` — required cases, thresholds, provenance, fallback, or ownership are missing;
-   - `NO-GO / REMEDIATE` — observed evidence demonstrates a critical failure or misses an accepted gate;
+   - `NO-GO / REMEDIATE` — observed evidence demonstrates a critical failure or misses an accepted gate. After remediation, require independent held-out cases for the failed critical segment plus relevant regression gates; rerunning only the known failures is insufficient;
    - `CONDITIONAL GO` — verifiable evidence meets documented gates for the stated scope and named approvers still own release authorization. State explicitly that this is not safety or compliance certification.
 
    Never issue an unconditional `GO`, safety certification, or compliance approval.
