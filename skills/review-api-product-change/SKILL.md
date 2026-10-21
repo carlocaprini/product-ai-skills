@@ -1,6 +1,6 @@
 ---
 name: review-api-product-change
-description: Reviews a proposed API product change for consumer impact, backward compatibility, versioning, migration, rollout, documentation, and developer experience. Use when changing an API used by internal or external consumers.
+description: Reviews a proposed API product change for consumer impact, backward compatibility, versioning, migration, rollout, documentation, and developer experience. Use when changing an API used by internal or external consumers. Do not use for greenfield API design, code or security review alone, or general product prioritization.
 ---
 
 # Review API Product Change
@@ -27,7 +27,7 @@ If there is no current API, say that compatibility cannot be assessed and route 
 
 Minimum useful context is the proposed change and product intent, what is known about current behavior, and at least one affected API surface. Helpful evidence includes current and proposed contract fragments, sample requests/responses/errors, consumer or usage inventory, SDKs, client versions, lifecycle policy, support commitments, SLOs, documentation, and rollout constraints.
 
-When a decisive before/after fragment is missing, ask for it **once** if the answer can materially change the verdict. Still provide a provisional change-risk inventory and name the missing evidence; do not demand every possible artifact before being useful. Missing consumer evidence is not evidence of no consumers.
+When a decisive before/after fragment is missing, ask for it **once** if the answer can materially change the verdict. If the current artifact cannot be shared, request a sanitized current→proposed delta or the sanitized result of an internal comparison instead; do not ask again for an artifact the user has said is unavailable. Still provide a provisional change-risk inventory and name the missing evidence; do not demand every possible artifact before being useful. Missing consumer evidence is not evidence of no consumers.
 
 Separate evidence explicitly:
 
@@ -43,7 +43,7 @@ Do not upgrade telemetry into a complete inventory, a schema diff into a behavio
 
 - Read [compatibility taxonomy](references/compatibility-taxonomy.md) when classifying a multi-surface change, a protocol-specific edge, or a semantic change that a schema diff may miss.
 - Read [consumer impact questions](references/consumer-impact-questions.md) only when consumer inventory, migration burden, support obligations, or rollout evidence is materially unclear. Select the smallest decision-changing questions; do not send the whole list as an intake form.
-- Use the [API change review template](assets/api-change-review-template.md) when the user asks for a reusable review artifact or the change is consequential enough to require a handoff. For a narrow compatibility question, answer compactly without reproducing the full template.
+- Use the [API change review template](assets/api-change-review-template.md) only when the user explicitly asks for a reusable/full handoff artifact, or when at least six materially different changes across different consumer classes or owners make a compact review unsafe. Otherwise do not load or reproduce the template.
 
 ## Review procedure
 
@@ -70,6 +70,16 @@ Do not upgrade telemetry into a complete inventory, a schema diff into a behavio
 
 9. **Make a consumer-oriented decision.** Recommend `additive`, `versioned`, `adapter`, `deprecate`, or `hold` (or a precise combination), with rationale, residual unknowns, smallest evidence/test needed, and the product/engineering/consumer signoffs still required. Do not replace judgment with one opaque breakage score.
 
+## Response proportionality
+
+Lead with the verdict. Include only distinctions that change compatibility, strategy, migration, rollout, or recovery.
+
+- For one or two closely related changes, aim for **350 words or fewer**: a direct verdict, at most five compatibility rows, the chosen strategy, and no more than three compact migration/rollout steps.
+- For a consequential multi-surface change, aim for **800 words or fewer** unless the user requests deeper analysis or a reusable artifact. Combine repeated evidence caveats, owner decisions, and rollout controls instead of restating them by change.
+- Use the full template only under the loading rule above. Do not add a separate intent recap, evidence ledger, developer-experience section, migration table, rollout table, and blocker table when one compact matrix and staged recommendation convey the same decision.
+
+These limits never justify omitting a breaking semantic or authorization change, an unknown consumer class, an unsafe recovery claim, or a decisive migration blocker.
+
 ## Output contract
 
 Lead with the recommendation and confidence in the baseline. Then provide, in this order:
@@ -80,7 +90,7 @@ Lead with the recommendation and confidence in the baseline. Then provide, in th
 4. **Migration, communication, and rollout** — stages, owners, verification signals, stop conditions, support window, and safe recovery versus irreversible effects.
 5. **Open questions/blockers** — residual risks and the smallest practical evidence or consumer test that would resolve each one.
 
-For a narrow question, use a short verdict plus only the relevant rows and next action. For a consequential cross-consumer change, use the full artifact. Never imply that synthetic examples, expected tests, or proposed monitoring are observed results.
+For a narrow question, use a short verdict plus only the relevant rows and next action. For a consequential cross-consumer change, keep the same sequence but compress immaterial or repetitive sections unless a full artifact is warranted. Never imply that synthetic examples, expected tests, or proposed monitoring are observed results.
 
 ## Final check
 

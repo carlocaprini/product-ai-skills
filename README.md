@@ -10,7 +10,7 @@ This repository contains three Agent Skill packages, public authoring and evalua
 - [`assess-agent-autonomy`](skills/assess-agent-autonomy/SKILL.md) recommends action-level autonomy, approval, enforcement, recovery, and rollout boundaries for AI agents.
 - [`review-api-product-change`](skills/review-api-product-change/SKILL.md) reviews an existing API change for per-consumer compatibility, migration, developer experience, and staged rollout.
 
-Observed synthetic behavioral evidence is recorded for `assess-agent-autonomy`. No installation command, client compatibility claim, or release is currently published.
+Observed synthetic behavioral evidence is recorded for `assess-agent-autonomy` and `review-api-product-change`. No installation command, client compatibility claim, or release is currently published.
 
 The absence of installation, compatibility, and release claims is intentional: they will appear only when the corresponding public artifacts have been reviewed and verified.
 
