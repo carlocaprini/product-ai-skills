@@ -6,12 +6,16 @@ Do not give this file, its expected properties, rubric, or prior outputs to a mo
 
 ## Candidate and controls
 
-- Candidate revision: working tree based on `origin/main`; exact runtime hashes will be recorded before execution.
-- Client/model/settings: not run.
-- Environment and timezone: not run; planned isolated synthetic workspaces, Europe/Rome.
-- Context isolation: automatic routing will not name the skill; behavioral ON runs will have only this package; OFF runs will contain no skill.
+- Final candidate revision: `44d905d6b0530280cb8755e5d0c27d5d3668f623`.
+- Final runtime-manifest SHA-256: `46820435b06495bfd584c4c5e0de247a86a67484d2ed3781d4692e3ed88dd460`.
+- Final runtime files: `SKILL.md` `4735ed229139aeabd856b01c9e9182e88613b08e00cf1383b3ebf9d7156a195e`; `references/evaluation-design.md` `652b4e1149c9c5b7960e4d4d0587ab253dc7ea0e564c1f57bc55ba332612ac93`; `references/edge-and-negative-cases.md` `75cec08790ec23fde529557688f6af39859a7a5161e2d6d6c0f313d69cf5b663`; `assets/eval-plan-template.md` `5c0bfcb6ca1a580a4951ae4785fa2287933c3d2018cc4a1964993fb5ec9688fa`; `assets/release-scorecard-template.md` `482484f5c32706d16d6c3fff79a3435988a13b730fa45288b42b1b6d9055d5a6`.
+- Client/model/settings: Codex CLI `0.163.0-alpha.10.2`, `gpt-6.1-sol`, high reasoning, read-only sandbox, ephemeral sessions, user configuration ignored, plugins/browser/computer-use/multi-agent features disabled, and `web_search="disabled"`.
+- Environment and timezone: isolated temporary workspaces on macOS; 2026-10-21, Europe/Rome. Exact start times and sampling parameters beyond high reasoning were not retained.
+- Context isolation: automatic routing never named the skill; behavioral ON runs had only this candidate's five runtime files and used explicit invocation; OFF runs had no candidate files or copied instructions.
 - B4 fixture isolation: copy only `tests/fixtures/ka-12-evidence.md`, byte for byte, to the isolated workspace root as `ka-12-evidence.md`. Do not expose `tests/evals.md` or the rest of the tests tree to the generation context. Record the fixture hash with the run.
-- Tool controls: no web, external integrations, production systems, customer data, or paid evaluation service.
+- B4 fixture SHA-256: `7c472fe006120c983ce578cd3b65dc24bf94def7653a2252fcc2647ecc940302`.
+- Tool controls: no valid trace contained a web, browser, app, MCP, or external-integration call. No production systems, customer data, or paid evaluation service beyond the authorized model sessions were used.
+- Review: one independent same-model behavioral reviewer and two fresh same-model blind comparison scorers. The repository owner explicitly authorized sending the unpublished runtime package and synthetic prompts/fixture to the Codex model service.
 - External actions: prohibited. Every feature, result, threshold, user, ticket, and organization is synthetic.
 
 An executed run must record the exact commit or runtime file hashes, client and version, model/settings when available, tool access, context isolation, date/timezone, prompt, actual output, skill-load or isolation evidence, reviewer, verdict, and limitations. Unknown metadata remains `not recorded`, never inferred.
@@ -184,19 +188,98 @@ Blocking failures are: claiming that an unexecuted or synthetic result was measu
 
 ## Observed results
 
-Not run. Record valid observations, complete prompts and outputs, comparisons, refinements, excluded attempts, and limitations here after execution.
+### Candidate lineage and targeted regression
+
+The valid routing regression used candidate `2f35c5f` after the discovery-description correction. The description is byte-identical in the final candidate. B1 and B3–B6 were last generated on `721625d` with runtime manifest `c503e968f570fd2bc971719e969eb4a2ae2efa233ecbf81dd89df1e854e67afe`. The final runtime change in `44d905d` adds only the independent-held-out requirement to the `NO-GO / REMEDIATE` branch; B2 was rerun on that exact final candidate. This targeted lineage is recorded instead of claiming that every unaffected case was regenerated after every one-line refinement.
+
+### Observed summary
+
+| Dimension | Result |
+| --- | ---: |
+| Automatic routing | **6/6** — sensitivity 3/3, specificity 3/3 |
+| Behavioral review | **6/6 pass** after targeted B4, B6, and B2 refinements |
+| Blocking failures in final behavioral outputs | **0** |
+| C1 blind preference | **no material difference / no material difference** |
+| C2 blind preference | **ON better / ON better** |
+| C1 output length | ON 137 words / OFF 52 — **2.63×** |
+| C2 output length | ON 363 words / OFF 155 — **2.34×** |
+
+C1 shows that an ordinary answer can already enforce a clearly supplied zero-critical-failure gate; the skill adds provenance, independent held-out critical-segment retesting, and accountability, but neither scorer found a material decision advantage under the predeclared rule. C2 is the stronger differentiator: both scorers preferred the skill condition for held-out separation, scorer calibration, accountable segment/severity gates, operational gaps, and the feedback loop.
+
+### Automatic-routing observations
+
+Command traces, not model self-report, established whether `SKILL.md` was read. The final routing regression used fresh contexts and no explicit skill invocation.
+
+| ID | Expected load | Observed read | Result | Observed behavior |
+| --- | --- | --- | --- | --- |
+| T1 | yes | yes | **Pass** | Returned `PLAN ONLY / NOT EVALUATED` and a ticket-summary evaluation plan. |
+| T2 | yes | yes | **Pass** | Returned `INSUFFICIENT EVIDENCE` and requested the decisive results, thresholds, version, and owner. |
+| T3 | yes | yes | **Pass** | Designed a keyword-search versus AI-answer task-level baseline and release plan. |
+| N1 | no | no | **Pass** | Requested leaderboard inputs without loading the feature-readiness skill. |
+| N2 | no | no | **Pass** | Kept the answer on missing refund authority and human approval. |
+| N3 | no | no | **Pass** | Kept the answer on API compatibility and migration evidence. |
+
+Routing-output SHA-256 values, in T1–T3/N1–N3 order: `fa510706ed0eb882d63543c38664bdf681237263bc66a07b0a15c929b5e92a5d`, `006bfb5778de47982bd41a6ec2d69648ccc8ef952d61700dfc0a1f2a8184b7e2`, `81e7317c3d3b40a51734dee7cde3f5b36adb0e5b98f5bb5aad950ad490b73ed6`, `a4c342634c5062dc0a01beedf25677e6b0eea4589961c9e72890298357218178`, `8d09634af7770ffb0c7531aae7dee0e665ee601b33f7df33c157f799cd71c5f7`, and `c534a92aaec0789f536aa135387396c98fda5dbfb0a772d267bf2e69c4e969d7`.
+
+### Behavioral observations
+
+The independent reviewer received the expected/forbidden properties and complete outputs, but not the runtime skill or generation traces.
+
+| Case | Words | Verdict | Output SHA-256 | Observed decisive behavior |
+| --- | ---: | --- | --- | --- |
+| B1 | 872 | **Pass** | `57a0e6835b02486759fa57d52d0d8e5491d944330074d00de7dc97b89be13dd6` | `PLAN ONLY / NOT EVALUATED`; representative ledger, proposed gates, owners and operational/fallback evidence remain TBD/Not run. |
+| B2 | 137 | **Pass after correction** | `81406ee6269893b9d39cd2b65a9780ab215c34ea95adeb4b38284a647c3b3a33` | `NO-GO / REMEDIATE`; critical segment overrides 96% aggregate; independent held-out multi-patient cases are required after remediation. |
+| B3 | 363 | **Pass** | `ca46eaed4ddf73e5f2e4bd7bddd38326bb826da16ad42f4b5990393e3d174a83` | `INSUFFICIENT EVIDENCE`; exposes tuning leakage, judge-human mismatch, missing segments and unaccepted gates without averaging scores. |
+| B4 | 138 | **Pass after correction** | `2f072acabc8303cfb1baaeff19f4cd7f227898093b06d7805fd01cfb390d6c47` | Reads the isolated fixture; scopes `CONDITIONAL GO` to synthetic `ka-12`; preserves release authority and denies safety/compliance certification. |
+| B5 | 263 | **Pass** | `c713dcc33a69bd53f1a61ea656094bbe35745f0c293c1a3f90a3690aad98755c` | `INSUFFICIENT EVIDENCE`; refuses post-hoc thresholds and identifies owner, segment, fallback, cost and latency gaps. |
+| B6 | 193 | **Pass after correction** | `2ca6c2c0637a06b6d1014ace26d7838a202b080176b1f3af9bf2d9d68a715e98` | Refuses verdict transfer; justifies a full rerun because model, prompt and retrieval changes can affect the complete task, with critical/segment and operational gates retained. |
+
+No final output contained a forbidden or blocking behavior. B1's length reflects a requested full evaluation plan; B2 and B4 remained compact release decisions. B5 ends with one focused owner question only after supplying a provisional assessment.
+
+### Controlled comparisons
+
+The substantive prompt was identical within each pair. ON skill loads and OFF isolation were verified from command traces. Scorers saw only the request, responses A/B, rubric and decision rules; condition labels and traces were hidden. A/B order was reversed between scorers.
+
+| Pair | ON output | OFF output | Scorer 1 | Scorer 2 | Result |
+| --- | --- | --- | --- | --- | --- |
+| C1 — critical segment failure | Final B2 above | 52-word baseline, SHA-256 `4be40709bda8e61ef906558756f9de6d2cd85331de0d91d98e136de7bd2fe33b` | No material difference | No material difference | **No material difference** |
+| C2 — judge disagreement and leakage | B3 above | 155-word baseline, SHA-256 `43f8a9bbe6dedbc375bc9a22f95eea04c8b68efd1e73e219d3f8a7e9de8fcc98` | ON better | ON better | **ON better** |
+
+The C1 OFF answer correctly blocks `rc-7` because the accepted zero-critical-failure gate failed. The final ON answer adds explicit evidence state, independent held-out multi-patient cases, regression gates, updated configuration recording and release accountability. Both scorers judged those additions useful but not materially decision-changing for this narrow prompt.
+
+The C2 OFF answer correctly rejects launch readiness, detects tuning-set leakage and asks for same-case judge calibration and a representative held-out set. Both scorers still preferred ON: it additionally requires case-level specialist adjudication, concise-complete versus verbose-incomplete calibration examples, accountable segment and severity gates, operational evidence, monitoring, and re-evaluation triggers without inventing numbers.
+
+### Refinements and excluded attempts
+
+1. **Evaluation-protocol review:** independent package review found that the first B4 expectation rewarded `CONDITIONAL GO` without inspectable evidence, the reviewer rubric lacked complete decision rules, the plan template omitted input/system context, and B5/B6 lacked forbidden behaviors. A synthetic inspectable fixture, explicit staging rule, complete reviewer mapping and missing negative criteria were added before formal generation.
+2. **Fixture regression:** a second review caught a `4/4` fallback claim backed by only three cases, an unspecified fixture-copy path, and no verdict when both comparison arms block. The fixture was corrected to `3/3`, staging was made byte-specific, and the decision rule now handles both-arm failures.
+3. **Routing:** candidate `13dc7d8` loaded the skill for N1 because the frontmatter repeated leaderboard/model-selection exclusion terms. That valid failure was retained. The frontmatter was restored to the approved positive discovery description; the six-case routing regression then passed.
+4. **Release boundary:** the first final B4 output scoped the synthetic result but did not explicitly deny safety/compliance certification. The `CONDITIONAL GO` instruction was tightened; the rerun passed.
+5. **Regression scope:** the first final B6 output did not explain when a focused versus full rerun was warranted. The skill now targets changed components plus critical and representative segment gates, reserving a full rerun for changes that can affect the complete task or evidence boundary. The combined model/prompt/retrieval case then justified and passed a full rerun.
+6. **Critical-segment retest:** a later B2 output asked for relevant regression cases but did not explicitly require independent held-out critical-segment cases. The final candidate adds that requirement and rejects rerunning only known failures; the exact-candidate regression passed.
+
+Pre-refinement outputs and preliminary blind scores were not substituted for the final records. They were used only to identify the narrow corrections above. No failed model call, web-contaminated run, or tool-error run was included in the final score.
+
+### Limitations
+
+- One valid generation per case/arm; all prompts are synthetic and English-language.
+- The same model family generated and reviewed outputs, although contexts were fresh and comparison labels were blinded.
+- C1 shows no material advantage over a strong ordinary answer; the skill's comparative benefit is demonstrated only on C2 in this small suite.
+- Routing was run before the final two body-only refinements; the discovery description is unchanged. B1/B3–B6 precede the final one-line `NO-GO` refinement; B2 was rerun on the exact final runtime manifest. This is targeted regression evidence, not a claim that every case was regenerated on every commit.
+- Output hashes identify the reviewed records, but local temporary traces and generated outputs are not repository runtime dependencies.
+- No result proves real-world quality, statistical significance, production safety/compliance, standalone installation, or named-client compatibility.
 
 ## Current evidence
 
 | Gate | Result |
 | --- | --- |
-| Repository validator unit suite | Not run |
-| Repository structural and public-safety validation | Not run |
-| Skill Creator quick validation | Not run |
-| Agent Skills reference validation | Not run |
-| Automatic routing | Not run |
-| Behavioral cases | Not run |
-| Controlled comparisons | Not run |
+| Repository validator unit suite | **Pass** locally on 2026-10-21 — 15/15 tests |
+| Repository structural and public-safety validation | **Pass** locally on 2026-10-21 |
+| Skill Creator quick validation | **Pass** locally on 2026-10-21 |
+| Agent Skills reference validation | **Pass** locally on 2026-10-21 |
+| Automatic routing | **Pass** — 3/3 positive loads, 3/3 near-miss non-loads |
+| Behavioral cases | **Pass** — B1–B6, no blocking failure, after targeted refinements |
+| Controlled comparisons | **C1 no material difference; C2 ON better** — two blind scorers agree, no blocking failure |
 | Standalone retrieval/installation from immutable public revision | Not run |
 | Named client/version compatibility | Not claimed |
 
