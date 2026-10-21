@@ -872,14 +872,41 @@ Observed costs and risks:
 
 ## Publication, installation, and compatibility
 
+### Pre-public standalone and client verification — 2026-10-21
+
+This check used immutable PR commit `33a67ee942f02780981c8d526f4251ccc1967078`. The repository was still private, so the source was a local clone and this result is not evidence of anonymous public retrieval.
+
+- Extraction: `git archive <commit> skills/assess-agent-autonomy`, unpacked into a fresh `.agents/skills/assess-agent-autonomy/` directory with no other workspace files.
+- Installed files: `SKILL.md`, `assets/autonomy-matrix-template.md`, both runtime references, and `tests/evals.md`.
+- Integrity: all four runtime hashes matched the candidate identity above; the extracted directory matched the source directory.
+- Installed-copy validation: Agent Skills reference validator and skill-creator quick validator both passed.
+- Environment: macOS 15.7.7 build 24G720, x86_64; Codex CLI `0.163.0-alpha.10.2`; `gpt-5.6-sol`, high reasoning, read-only sandbox, approvals disabled, apps/plugins/integrations disabled, and all unrelated skills disabled.
+- Isolation: one fresh temporary workspace and ephemeral context per case; neither prompt named the skill.
+
+**Positive activation check**
+
+> Set a safe autonomy and retry boundary for an agent that updates customer account permissions after an approval workflow.
+
+**Observed:** Pass. The client automatically selected the skill, read `SKILL.md`, `references/autonomy-risk-tiers.md`, and `references/failure-and-recovery.md`, and returned a 273-word action-level boundary. It required approval bound to the exact permission diff, held privileged or cross-tenant changes for specialist definition, prohibited blind retry after an ambiguous write, and proposed a staged rollout. It performed no external action.
+
+**Near-miss check**
+
+> Design an evaluation plan to measure whether a new AI summarization feature is accurate, useful, and robust before release.
+
+**Observed:** Pass. The client read no `assess-agent-autonomy` file and returned an AI-feature evaluation plan. The original session completed after one service-side 429 retry; it was not replaced.
+
+**Limitations:** the tested client version is an alpha build; this is one positive and one near-miss on synthetic English prompts; no cross-client inference is warranted. Anonymous retrieval of the same commit through the raw public URL returned HTTP 404 because repository visibility was private.
+
 | Gate | Status |
 | --- | --- |
 | Runtime package matches the reviewed V0.7 manifest | **Pass** |
 | Repository structural and public-safety validation | **Pass** locally and in pull-request CI |
 | Agent Skills reference validation | **Pass** locally and in pull-request CI |
-| Standalone retrieval from immutable public revision | **Not run** |
-| Standalone installed-copy validation | **Not run** |
-| Named client/version activation verification from the public revision | **Not run** |
+| Standalone extraction from immutable private PR commit | **Pass** |
+| Standalone installed-copy validation | **Pass** |
+| Named client/version routing on the immutable private PR commit | **Pass** — Codex CLI `0.163.0-alpha.10.2` |
+| Anonymous retrieval from immutable public revision | **Blocked** — repository still private |
+| Public-origin installed-copy validation | **Not run** |
 | Cross-client compatibility | **Not claimed** |
 
-Only a later evidence update may change the installation or compatibility rows. A repository becoming public, a validator passing, and a skill working in one recorded client/version are separate facts.
+Only a later evidence update may change the public-origin or cross-client rows. Once the exact commit is publicly retrievable, repeat anonymous extraction and integrity validation before making an installation or public compatibility claim. A repository becoming public, a validator passing, and a skill working in one recorded client/version are separate facts.

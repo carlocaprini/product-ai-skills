@@ -2,7 +2,7 @@
 
 ## Current verified status
 
-The repository packages are structurally validated, and `assess-agent-autonomy` includes recorded synthetic behavioral evidence. No standalone installation method or client compatibility is currently verified or published.
+The repository packages are structurally validated, and `assess-agent-autonomy` includes recorded synthetic behavioral evidence plus a pre-public standalone extraction and Codex CLI check from an immutable private commit. No public-source installation method or public client compatibility claim is currently verified.
 
 ## Evidence required for a claim
 
