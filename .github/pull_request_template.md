@@ -14,3 +14,4 @@ List the validation performed and, where relevant, distinguish expected evaluati
 - [ ] `python -m pip install -r requirements-dev.txt` completes.
 - [ ] `python scripts/validate_repo.py .` passes.
 - [ ] `python -m unittest discover -s tests -v` passes.
+- [ ] `skills-ref validate skills/<skill-name>` passes for each changed package.
