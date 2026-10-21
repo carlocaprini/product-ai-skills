@@ -84,11 +84,11 @@ Label evidence consistently:
    - `PLAN ONLY / NOT EVALUATED` — no valid execution evidence exists;
    - `INSUFFICIENT EVIDENCE` — required cases, thresholds, provenance, fallback, or ownership are missing;
    - `NO-GO / REMEDIATE` — observed evidence demonstrates a critical failure or misses an accepted gate;
-   - `CONDITIONAL GO` — verifiable evidence meets documented gates for the stated scope and named approvers still own release authorization.
+   - `CONDITIONAL GO` — verifiable evidence meets documented gates for the stated scope and named approvers still own release authorization. State explicitly that this is not safety or compliance certification.
 
    Never issue an unconditional `GO`, safety certification, or compliance approval.
 
-8. **Close the feedback loop.** Recommend the smallest next experiment or fix, post-launch monitoring for quality drift, correction or complaint, fallback, cost, and tail latency, plus re-evaluation triggers for model, prompt, retrieval, tool, policy, data, or segment changes.
+8. **Close the feedback loop.** Recommend the smallest next experiment or fix, post-launch monitoring for quality drift, correction or complaint, fallback, cost, and tail latency, plus re-evaluation triggers for model, prompt, retrieval, tool, policy, data, or segment changes. After a material configuration change, target the changed components plus critical and representative segment gates; require a full rerun only when the change can affect the broader task or evidence boundary.
 
 ## Output contract
 
