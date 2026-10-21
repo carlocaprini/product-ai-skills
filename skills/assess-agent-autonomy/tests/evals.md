@@ -872,14 +872,16 @@ Observed costs and risks:
 
 ## Publication, installation, and compatibility
 
-### Pre-public standalone and client verification — 2026-10-21
+### Standalone and named-client verification — 2026-10-21
 
-This check used immutable PR commit `33a67ee942f02780981c8d526f4251ccc1967078`. The repository was still private, so the source was a local clone and this result is not evidence of anonymous public retrieval.
+This check used immutable commit `33a67ee942f02780981c8d526f4251ccc1967078`. The named-client checks were first run from a local extraction while the repository was private. After the repository became public, an anonymous follow-up downloaded that exact commit and confirmed that the public artifact contains the identical runtime bytes. The behavioral checks were therefore not repeated against a different candidate.
 
-- Extraction: `git archive <commit> skills/assess-agent-autonomy`, unpacked into a fresh `.agents/skills/assess-agent-autonomy/` directory with no other workspace files.
+- Initial extraction: `git archive <commit> skills/assess-agent-autonomy`, unpacked into a fresh `.agents/skills/assess-agent-autonomy/` directory with no other workspace files.
+- Public retrieval: the raw `SKILL.md` URL and the codeload archive for the exact commit both returned successfully without authentication. The archive was unpacked into a second fresh `.agents/skills/assess-agent-autonomy/` directory.
+- Public archive: `https://codeload.github.com/carlocaprini/product-ai-skills/tar.gz/33a67ee942f02780981c8d526f4251ccc1967078`.
 - Installed files: `SKILL.md`, `assets/autonomy-matrix-template.md`, both runtime references, and `tests/evals.md`.
-- Integrity: all four runtime hashes matched the candidate identity above; the extracted directory matched the source directory.
-- Installed-copy validation: Agent Skills reference validator and skill-creator quick validator both passed.
+- Integrity: all four runtime hashes in both installed copies matched the candidate identity above; the anonymously downloaded raw `SKILL.md` matched the archive copy byte for byte.
+- Installed-copy validation: the Agent Skills reference validator and skill-creator quick validator both passed on the anonymously downloaded copy.
 - Environment: macOS 15.7.7 build 24G720, x86_64; Codex CLI `0.163.0-alpha.10.2`; `gpt-5.6-sol`, high reasoning, read-only sandbox, approvals disabled, apps/plugins/integrations disabled, and all unrelated skills disabled.
 - Isolation: one fresh temporary workspace and ephemeral context per case; neither prompt named the skill.
 
@@ -895,18 +897,17 @@ This check used immutable PR commit `33a67ee942f02780981c8d526f4251ccc1967078`. 
 
 **Observed:** Pass. The client read no `assess-agent-autonomy` file and returned an AI-feature evaluation plan. The original session completed after one service-side 429 retry; it was not replaced.
 
-**Limitations:** the tested client version is an alpha build; this is one positive and one near-miss on synthetic English prompts; no cross-client inference is warranted. Anonymous retrieval of the same commit through the raw public URL returned HTTP 404 because repository visibility was private.
+**Limitations:** the tested client version is an alpha build; this is one positive and one near-miss on synthetic English prompts; no cross-client or later-version inference is warranted. An initial anonymous request returned HTTP 404 while the repository was private; after the visibility change, anonymous retrieval of the same commit succeeded and the public artifact passed the integrity and installed-copy checks above.
 
 | Gate | Status |
 | --- | --- |
 | Runtime package matches the reviewed V0.7 manifest | **Pass** |
 | Repository structural and public-safety validation | **Pass** locally and in pull-request CI |
 | Agent Skills reference validation | **Pass** locally and in pull-request CI |
-| Standalone extraction from immutable private PR commit | **Pass** |
-| Standalone installed-copy validation | **Pass** |
-| Named client/version routing on the immutable private PR commit | **Pass** — Codex CLI `0.163.0-alpha.10.2` |
-| Anonymous retrieval from immutable public revision | **Blocked** — repository still private |
-| Public-origin installed-copy validation | **Not run** |
+| Standalone extraction from immutable public commit | **Pass** |
+| Anonymous retrieval from immutable public revision | **Pass** |
+| Public-origin installed-copy validation | **Pass** |
+| Named client/version routing on identical runtime bytes from that commit | **Pass** — Codex CLI `0.163.0-alpha.10.2` |
 | Cross-client compatibility | **Not claimed** |
 
-Only a later evidence update may change the public-origin or cross-client rows. Once the exact commit is publicly retrievable, repeat anonymous extraction and integrity validation before making an installation or public compatibility claim. A repository becoming public, a validator passing, and a skill working in one recorded client/version are separate facts.
+A repository being public, a validator passing, and a skill working in one recorded client/version remain separate facts. Only later evidence may expand this claim to another revision, client, or version.
