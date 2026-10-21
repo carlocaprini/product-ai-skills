@@ -10,9 +10,7 @@ This repository contains three Agent Skill packages, public authoring and evalua
 - [`assess-agent-autonomy`](skills/assess-agent-autonomy/SKILL.md) recommends action-level autonomy, approval, enforcement, recovery, and rollout boundaries for AI agents.
 - [`review-api-product-change`](skills/review-api-product-change/SKILL.md) reviews an existing API change for per-consumer compatibility, migration, developer experience, and staged rollout.
 
-Observed synthetic behavioral evidence is recorded for `assess-agent-autonomy` and `review-api-product-change`. No installation command, client compatibility claim, or release is currently published.
-
-The absence of installation, compatibility, and release claims is intentional: they will appear only when the corresponding public artifacts have been reviewed and verified.
+Observed synthetic behavioral evidence is recorded for `assess-agent-autonomy` and `review-api-product-change`. A public-source standalone installation path and a scoped Codex CLI compatibility check are verified for `assess-agent-autonomy` at immutable commit `33a67ee942f02780981c8d526f4251ccc1967078`. No standalone installation claim is made for `review-api-product-change`, and no release or cross-client compatibility claim is currently published.
 
 ## Repository boundary
 
@@ -50,7 +48,7 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md), [the authoring contract](docs/authoring
 
 ## Compatibility and installation
 
-No client or installation path is currently declared as verified. The evidence required before adding such a claim is documented in [docs/compatibility.md](docs/compatibility.md).
+The `assess-agent-autonomy` package was anonymously downloaded from the public repository, installed as a standalone package, validated, and checked for positive and near-miss routing with Codex CLI `0.163.0-alpha.10.2`. This evidence applies only to immutable commit `33a67ee942f02780981c8d526f4251ccc1967078`, that client version, and the recorded environment; it does not establish cross-client compatibility. See the [compatibility record](docs/compatibility.md) and [full evaluation evidence](skills/assess-agent-autonomy/tests/evals.md).
 
 ## License
 

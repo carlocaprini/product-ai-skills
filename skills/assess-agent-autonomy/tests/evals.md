@@ -872,14 +872,42 @@ Observed costs and risks:
 
 ## Publication, installation, and compatibility
 
+### Standalone and named-client verification — 2026-10-21
+
+This check used immutable commit `33a67ee942f02780981c8d526f4251ccc1967078`. The named-client checks were first run from a local extraction while the repository was private. After the repository became public, an anonymous follow-up downloaded that exact commit and confirmed that the public artifact contains the identical runtime bytes. The behavioral checks were therefore not repeated against a different candidate.
+
+- Initial extraction: `git archive <commit> skills/assess-agent-autonomy`, unpacked into a fresh `.agents/skills/assess-agent-autonomy/` directory with no other workspace files.
+- Public retrieval: the raw `SKILL.md` URL and the codeload archive for the exact commit both returned successfully without authentication. The archive was unpacked into a second fresh `.agents/skills/assess-agent-autonomy/` directory.
+- Public archive: `https://codeload.github.com/carlocaprini/product-ai-skills/tar.gz/33a67ee942f02780981c8d526f4251ccc1967078`.
+- Installed files: `SKILL.md`, `assets/autonomy-matrix-template.md`, both runtime references, and `tests/evals.md`.
+- Integrity: all four runtime hashes in both installed copies matched the candidate identity above; the anonymously downloaded raw `SKILL.md` matched the archive copy byte for byte.
+- Installed-copy validation: the Agent Skills reference validator and skill-creator quick validator both passed on the anonymously downloaded copy.
+- Environment: macOS 15.7.7 build 24G720, x86_64; Codex CLI `0.163.0-alpha.10.2`; `gpt-5.6-sol`, high reasoning, read-only sandbox, approvals disabled, apps/plugins/integrations disabled, and all unrelated skills disabled.
+- Isolation: one fresh temporary workspace and ephemeral context per case; neither prompt named the skill.
+
+**Positive activation check**
+
+> Set a safe autonomy and retry boundary for an agent that updates customer account permissions after an approval workflow.
+
+**Observed:** Pass. The client automatically selected the skill, read `SKILL.md`, `references/autonomy-risk-tiers.md`, and `references/failure-and-recovery.md`, and returned a 273-word action-level boundary. It required approval bound to the exact permission diff, held privileged or cross-tenant changes for specialist definition, prohibited blind retry after an ambiguous write, and proposed a staged rollout. It performed no external action.
+
+**Near-miss check**
+
+> Design an evaluation plan to measure whether a new AI summarization feature is accurate, useful, and robust before release.
+
+**Observed:** Pass. The client read no `assess-agent-autonomy` file and returned an AI-feature evaluation plan. The original session completed after one service-side 429 retry; it was not replaced.
+
+**Limitations:** the tested client version is an alpha build; this is one positive and one near-miss on synthetic English prompts; no cross-client or later-version inference is warranted. An initial anonymous request returned HTTP 404 while the repository was private; after the visibility change, anonymous retrieval of the same commit succeeded and the public artifact passed the integrity and installed-copy checks above.
+
 | Gate | Status |
 | --- | --- |
 | Runtime package matches the reviewed V0.7 manifest | **Pass** |
 | Repository structural and public-safety validation | **Pass** locally and in pull-request CI |
 | Agent Skills reference validation | **Pass** locally and in pull-request CI |
-| Standalone retrieval from immutable public revision | **Not run** |
-| Standalone installed-copy validation | **Not run** |
-| Named client/version activation verification from the public revision | **Not run** |
+| Standalone extraction from immutable public commit | **Pass** |
+| Anonymous retrieval from immutable public revision | **Pass** |
+| Public-origin installed-copy validation | **Pass** |
+| Named client/version routing on identical runtime bytes from that commit | **Pass** — Codex CLI `0.163.0-alpha.10.2` |
 | Cross-client compatibility | **Not claimed** |
 
-Only a later evidence update may change the installation or compatibility rows. A repository becoming public, a validator passing, and a skill working in one recorded client/version are separate facts.
+A repository being public, a validator passing, and a skill working in one recorded client/version remain separate facts. Only later evidence may expand this claim to another revision, client, or version.
