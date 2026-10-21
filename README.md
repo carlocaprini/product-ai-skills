@@ -4,10 +4,11 @@ Focused Agent Skills for better product decisions.
 
 ## Current status
 
-This repository contains two Agent Skill packages, public authoring and evaluation guidance, and deterministic validation tooling:
+This repository contains three Agent Skill packages, public authoring and evaluation guidance, and deterministic validation tooling:
 
 - [`review-product-decision`](skills/review-product-decision/SKILL.md) reviews an unresolved consequential product choice and produces a concise, conditional Decision Brief.
 - [`assess-agent-autonomy`](skills/assess-agent-autonomy/SKILL.md) recommends action-level autonomy, approval, enforcement, recovery, and rollout boundaries for AI agents.
+- [`review-api-product-change`](skills/review-api-product-change/SKILL.md) reviews an existing API change for per-consumer compatibility, migration, developer experience, and staged rollout.
 
 Observed synthetic behavioral evidence is recorded for `assess-agent-autonomy`. No installation command, client compatibility claim, or release is currently published.
 
