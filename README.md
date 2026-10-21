@@ -9,9 +9,9 @@ This repository contains two Agent Skill packages, public authoring and evaluati
 - [`review-product-decision`](skills/review-product-decision/SKILL.md) reviews an unresolved consequential product choice and produces a concise, conditional Decision Brief.
 - [`assess-agent-autonomy`](skills/assess-agent-autonomy/SKILL.md) recommends action-level autonomy, approval, enforcement, recovery, and rollout boundaries for AI agents.
 
-No installation command, client compatibility claim, observed behavioral evaluation result, or release is currently published.
+Observed synthetic behavioral evidence is recorded for `assess-agent-autonomy`. No installation command, client compatibility claim, or release is currently published.
 
-The absence of those claims is intentional: they will appear only when the corresponding public artifacts have been reviewed and verified.
+The absence of installation, compatibility, and release claims is intentional: they will appear only when the corresponding public artifacts have been reviewed and verified.
 
 ## Repository boundary
 
@@ -38,7 +38,7 @@ The checks use a version-pinned YAML parser and do not call an AI provider or ex
 python -m pip install -r requirements-dev.txt
 python scripts/validate_repo.py .
 python -m unittest discover -s tests -v
-skills-ref validate skills/review-product-decision
+for skill in skills/*; do if [ -d "$skill" ]; then skills-ref validate "$skill"; fi; done
 ```
 
 The repository validator checks public safety, valid typed `SKILL.md` YAML frontmatter, package boundaries, inline and reference-style local Markdown links, and common secret or local-path leaks. CI also runs the version-pinned Agent Skills reference validator and scans every commit introduced by a pull request so that adding and later deleting unsafe content does not bypass the public-safety gate. Automated checks complement, but do not replace, human review of everything intended to become public.

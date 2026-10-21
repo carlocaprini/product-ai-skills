@@ -2,7 +2,7 @@
 
 ## Current verified status
 
-No skill package, installation method, or client compatibility is currently verified or published by this repository.
+The repository packages are structurally validated, and `assess-agent-autonomy` includes recorded synthetic behavioral evidence. No standalone installation method or client compatibility is currently verified or published.
 
 ## Evidence required for a claim
 
