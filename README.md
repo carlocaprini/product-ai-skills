@@ -52,4 +52,4 @@ No client or installation path is currently declared as verified. The evidence r
 
 ## License
 
-No public license has been granted yet. Until a `LICENSE` file is added, the repository contents remain subject to the default rights retained by the copyright holder.
+Licensed under the [Apache License 2.0](LICENSE).
