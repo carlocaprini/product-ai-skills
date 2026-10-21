@@ -2,7 +2,19 @@
 
 ## Current verified status
 
-The repository packages are structurally validated, and `assess-agent-autonomy` includes recorded synthetic behavioral evidence. No standalone installation method or client compatibility is currently verified or published.
+The repository packages are structurally validated. At immutable public commit `33a67ee942f02780981c8d526f4251ccc1967078`, `assess-agent-autonomy` was anonymously downloaded, extracted as a standalone package, and validated. The identical runtime bytes passed one positive activation and one near-miss routing check with Codex CLI `0.163.0-alpha.10.2` on macOS 15.7.7 (x86_64).
+
+The verified public-source installation procedure was:
+
+```sh
+mkdir -p .agents/skills
+curl -fsS -o source.tar.gz \
+  https://codeload.github.com/carlocaprini/product-ai-skills/tar.gz/33a67ee942f02780981c8d526f4251ccc1967078
+tar -xzf source.tar.gz -C .agents/skills --strip-components=2 \
+  product-ai-skills-33a67ee942f02780981c8d526f4251ccc1967078/skills/assess-agent-autonomy
+```
+
+This is evidence for that package revision and named client version only. It is not a release, a promise about later revisions, or a cross-client compatibility claim. The complete procedure, hashes, routing observations, and limitations are recorded in [`skills/assess-agent-autonomy/tests/evals.md`](../skills/assess-agent-autonomy/tests/evals.md).
 
 ## Evidence required for a claim
 
