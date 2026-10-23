@@ -460,4 +460,26 @@ A’s advantages are greater brevity and a review triggered by observed sessions
 
 </details>
 
+## Final public-origin client outputs
+
+<details>
+<summary>Positive automatic-routing smoke</summary>
+
+**DECIDE NOW — prioritize a small setup simplification; hold off on building the AI guide.** Assuming the goal is getting more signups to first value, your reported poor activation and single engineer favor a bounded change with little ongoing maintenance.
+
+An AI guide could help people understand complex choices, but adds engineering and support work while leaving required setup steps intact. Simplification risks targeting the wrong obstacle: the cause of poor activation is still unknown.
+
+Use existing funnel or support evidence to select one setup bottleneck, then pilot removing or simplifying it. Keep it if more signups reach first value without more setup failures; reconsider AI guidance if the evidence points to varied questions that simpler setup cannot resolve.
+
+</details>
+
+<details>
+<summary>Near-miss automatic-routing smoke</summary>
+
+Please share the approved redesign brief, screens, or a summary of the agreed changes—I couldn’t find them in the workspace.
+
+I’ll turn that scope into user stories with acceptance criteria, without reopening the design decisions.
+
+</details>
+
 
