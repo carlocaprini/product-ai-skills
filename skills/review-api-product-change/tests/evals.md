@@ -474,6 +474,28 @@ Limitations:
 - routing in one client build does not establish universal routing or compatibility;
 - no result proves that a proposed API control, migration, consumer test, or rollback works in production.
 
+## Public-origin and named-client verification
+
+On 2026-10-23 (Europe/Rome), an anonymous download from public merge commit `585a7fc59bbd21671ceb67be086938a6010c6df2` was extracted to a fresh standalone package directory. The installed runtime bytes matched the repository package:
+
+- `SKILL.md`: `246148b24ccdb7242bb9c86d4ed0fd7cad3ec13f2faa5c6ff7cec39659d0e704`
+- `references/compatibility-taxonomy.md`: `eeb5e60309dab2c35fde0b7ad5cdb04162f1218bb52bd6661ed99ceaa7cdc74f`
+- `references/consumer-impact-questions.md`: `4697b4582c16d5d921af96bc7d92b79ab41b1c4e097d49e21c7edb9e2e636375`
+- `assets/api-change-review-template.md`: `b7f3e4f974e58b514418d173d6bb8b4ed5bb479d51339e4fd03dd648a495deef`
+
+Repository validation, the Agent Skills reference validator, and Skill Creator quick validation passed on the extracted copy.
+
+Two fresh ephemeral Codex CLI `0.163.0-alpha.11.1` sessions used `gpt-6.1-sol`, high reasoning, a read-only sandbox, disabled web search, and separate workspaces on macOS 15.7.7 (x86_64). Their temporary `CODEX_HOME` configurations disabled apps, plugins, memories, bundled skills, and every detected personal skill path. The public package was the only enabled workspace skill. Neither run read `tests/evals.md` or another skill. Command traces, not model self-report, established the following:
+
+| Case | Prompt | Observed load | Result | Words | Last-message SHA-256 |
+| --- | --- | --- | --- | ---: | --- |
+| Positive | “We want to change an existing public REST endpoint from offset to cursor pagination. Review consumer compatibility and rollout.” | Read `SKILL.md` plus both relevant references | Pass | 356 | `c4a2e027912f48c4cbb8c6828ff55ec691cb812b2c54bb190baf34c0c6443ffa` |
+| Near miss | “Design a new API for a greenfield inventory service.” | Did not read the skill | Pass | 758 | `33693fb034d092fca1896227248054f6ac6c0f94d05698533cfb919ef086ec85` |
+
+The complete captured outputs are [`public-verification-positive.md`](public-verification-positive.md) and [`public-verification-near-miss.md`](public-verification-near-miss.md). Their content matches the CLI last messages; repository files add the conventional terminal newline. The positive answer exceeded the skill's 350-word target by six words, a small proportionality miss that does not change the routing/client verdict.
+
+One earlier positive/near-miss attempt was excluded because the client could still discover a personal `spec` skill. The valid reruns above used explicit per-path disabling. A separate sandboxed startup attempt failed before any model response because network access to the model service was unavailable; it is not counted as an execution. These checks establish only anonymous retrieval, byte integrity, and observed routing in this exact client/configuration, not cross-client compatibility or real-world API quality.
+
 ## Current evidence
 
 | Gate | Result |
@@ -485,7 +507,7 @@ Limitations:
 | Automatic routing | **Pass** — 3/3 positive loads, 3/3 near-miss non-loads |
 | Behavioral cases | **Pass** — B1–B6, no blocking failure |
 | Controlled comparisons | **C1 ON better; C2 ON better narrowly** — no hard failure |
-| Standalone retrieval/installation from immutable public revision | **Not run** |
-| Named client/version compatibility | **Not claimed** |
+| Standalone retrieval/installation from immutable public revision | **Pass** — anonymous extraction from `585a7fc59bbd21671ceb67be086938a6010c6df2` |
+| Named client/version compatibility | **Pass, scoped** — Codex CLI `0.163.0-alpha.11.1`, one positive activation and one near miss |
 
 Only actual recorded runs may change these states.

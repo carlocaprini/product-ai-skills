@@ -11,7 +11,7 @@ This repository contains four Agent Skill packages, public authoring and evaluat
 - [`review-api-product-change`](skills/review-api-product-change/SKILL.md) reviews an existing API change for per-consumer compatibility, migration, developer experience, and staged rollout.
 - [`evaluate-ai-feature`](skills/evaluate-ai-feature/SKILL.md) designs task-level AI feature evaluations and interprets versioned evidence into calibrated release-readiness recommendations.
 
-Observed synthetic behavioral evidence is recorded for `assess-agent-autonomy`, `review-api-product-change`, and `evaluate-ai-feature`. A public-source standalone installation path and a scoped Codex CLI compatibility check are verified only for `assess-agent-autonomy` at immutable commit `33a67ee942f02780981c8d526f4251ccc1967078`. No standalone installation claim is made for `review-api-product-change` or `evaluate-ai-feature`, and no release or cross-client compatibility claim is currently published.
+Observed synthetic behavioral evidence is recorded for `assess-agent-autonomy`, `review-api-product-change`, and `evaluate-ai-feature`. Public-source standalone extraction and scoped Codex CLI checks are verified for `assess-agent-autonomy` at immutable commit `33a67ee942f02780981c8d526f4251ccc1967078`, `review-api-product-change` at `585a7fc59bbd21671ceb67be086938a6010c6df2`, and `evaluate-ai-feature` at `1693662a2f3bac4fad57c8b5d901f7e894946253`. These are package- and client-version-scoped observations, not releases or cross-client compatibility claims.
 
 ## Repository boundary
 
@@ -49,7 +49,7 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md), [the authoring contract](docs/authoring
 
 ## Compatibility and installation
 
-The `assess-agent-autonomy` package was anonymously downloaded from the public repository, installed as a standalone package, validated, and checked for positive and near-miss routing with Codex CLI `0.163.0-alpha.10.2`. This evidence applies only to immutable commit `33a67ee942f02780981c8d526f4251ccc1967078`, that client version, and the recorded environment; it does not establish cross-client compatibility. See the [compatibility record](docs/compatibility.md) and [full evaluation evidence](skills/assess-agent-autonomy/tests/evals.md).
+The `assess-agent-autonomy`, `review-api-product-change`, and `evaluate-ai-feature` packages were anonymously downloaded from immutable public commits, extracted as standalone packages, validated, and checked for positive and near-miss routing with the recorded Codex CLI versions. See the [compatibility record](docs/compatibility.md) and each package's evaluation evidence for exact revisions, hashes, controls, outputs, and limitations.
 
 ## License
 
