@@ -267,7 +267,30 @@ Pre-refinement outputs and preliminary blind scores were not substituted for the
 - C1 shows no material advantage over a strong ordinary answer; the skill's comparative benefit is demonstrated only on C2 in this small suite.
 - Routing was run before the final two body-only refinements; the discovery description is unchanged. B1/B3–B6 precede the final one-line `NO-GO` refinement; B2 was rerun on the exact final runtime manifest. This is targeted regression evidence, not a claim that every case was regenerated on every commit.
 - Output hashes identify the reviewed records, but local temporary traces and generated outputs are not repository runtime dependencies.
-- No result proves real-world quality, statistical significance, production safety/compliance, standalone installation, or named-client compatibility.
+- The behavioral campaign does not prove real-world quality, statistical significance, production safety/compliance, standalone installation, or named-client compatibility. The separate public-origin check below covers only installation integrity and routing in its named client/version.
+
+## Public-origin and named-client verification
+
+On 2026-10-23 (Europe/Rome), an anonymous download from public merge commit `1693662a2f3bac4fad57c8b5d901f7e894946253` was extracted to a fresh standalone package directory. The installed runtime bytes matched the repository package:
+
+- `SKILL.md`: `4735ed229139aeabd856b01c9e9182e88613b08e00cf1383b3ebf9d7156a195e`
+- `references/evaluation-design.md`: `652b4e1149c9c5b7960e4d4d0587ab253dc7ea0e564c1f57bc55ba332612ac93`
+- `references/edge-and-negative-cases.md`: `75cec08790ec23fde529557688f6af39859a7a5161e2d6d6c0f313d69cf5b663`
+- `assets/eval-plan-template.md`: `5c0bfcb6ca1a580a4951ae4785fa2287933c3d2018cc4a1964993fb5ec9688fa`
+- `assets/release-scorecard-template.md`: `482484f5c32706d16d6c3fff79a3435988a13b730fa45288b42b1b6d9055d5a6`
+
+Repository validation, the Agent Skills reference validator, and Skill Creator quick validation passed on the extracted copy.
+
+Two fresh ephemeral Codex CLI `0.163.0-alpha.11.1` sessions used `gpt-6.1-sol`, high reasoning, a read-only sandbox, disabled web search, and separate workspaces on macOS 15.7.7 (x86_64). Their temporary `CODEX_HOME` configurations disabled apps, plugins, memories, bundled skills, and every detected personal skill path. The public package was the only enabled workspace skill. Neither run read `tests/evals.md`, its fixture, or another skill. Command traces, not model self-report, established the following:
+
+| Case | Prompt | Observed load | Result | Words | Last-message SHA-256 |
+| --- | --- | --- | --- | ---: | --- |
+| Positive | “Design an evaluation for an AI feature that summarizes support tickets before an agent takes over.” | Read `SKILL.md` and both references | Pass | 894 | `f96daf5f4d49c7d5673e8949349b2f0dfdda5250c9273c28786189434e3be6d9` |
+| Near miss | “Pick the best foundation model using public leaderboard scores.” | Did not read the skill | Pass | 98 | `7781fb9b1ad1f15ddd28219b26c6c948be8966bb75e50dfb14520de34d6afc5b` |
+
+The complete captured outputs are [`public-verification-positive.md`](public-verification-positive.md) and [`public-verification-near-miss.md`](public-verification-near-miss.md). Their content matches the CLI last messages; repository files add the conventional terminal newline. In the near miss, the model attempted one shell `curl`; the read-only sandbox blocked DNS resolution, so no external result entered the response. This is disclosed as a tool-control limitation even though routing was correct.
+
+A separate sandboxed startup attempt failed before any model response because network access to the model service was unavailable; it is not counted as an execution. These checks establish only anonymous retrieval, byte integrity, and observed routing in this exact client/configuration, not cross-client compatibility or real-world evaluation quality.
 
 ## Current evidence
 
@@ -280,7 +303,7 @@ Pre-refinement outputs and preliminary blind scores were not substituted for the
 | Automatic routing | **Pass** — 3/3 positive loads, 3/3 near-miss non-loads |
 | Behavioral cases | **Pass** — B1–B6, no blocking failure, after targeted refinements |
 | Controlled comparisons | **C1 no material difference; C2 ON better** — two blind scorers agree, no blocking failure |
-| Standalone retrieval/installation from immutable public revision | Not run |
-| Named client/version compatibility | Not claimed |
+| Standalone retrieval/installation from immutable public revision | **Pass** — anonymous extraction from `1693662a2f3bac4fad57c8b5d901f7e894946253` |
+| Named client/version compatibility | **Pass, scoped** — Codex CLI `0.163.0-alpha.11.1`, one positive activation and one near miss |
 
 Only actual recorded runs may change these states.
