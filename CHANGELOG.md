@@ -8,6 +8,7 @@ All meaningful public changes to this repository are recorded here.
 - Add the initial public repository structure, contribution guidance, and deterministic validation checks.
 - Add the `review-product-decision` skill package with public, synthetic evaluation specifications.
 - Record its isolated routing, behavioral, interaction, and blinded comparison evidence, and refine the handling of narrow demand signals.
+- Record final public-origin standalone extraction and scoped Codex CLI routing checks for `review-product-decision`.
 - Add the `assess-agent-autonomy` V0.7 skill package with its public, synthetic Phase 2 comparison and routing evidence.
 - Add the `review-api-product-change` skill package with compatibility guidance, a reusable review template, and observed synthetic routing and behavioral comparison evidence.
 - Add the `evaluate-ai-feature` skill package with public routing, behavioral, and controlled comparison evidence.

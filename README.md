@@ -11,7 +11,7 @@ This repository contains four Agent Skill packages, public authoring and evaluat
 - [`review-api-product-change`](skills/review-api-product-change/SKILL.md) reviews an existing API change for per-consumer compatibility, migration, developer experience, and staged rollout.
 - [`evaluate-ai-feature`](skills/evaluate-ai-feature/SKILL.md) designs task-level AI feature evaluations and interprets versioned evidence into calibrated release-readiness recommendations.
 
-Observed synthetic behavioral evidence is recorded for all four packages. Public-source standalone extraction and scoped Codex CLI checks are verified for `assess-agent-autonomy` at immutable commit `33a67ee942f02780981c8d526f4251ccc1967078`, `review-api-product-change` at `585a7fc59bbd21671ceb67be086938a6010c6df2`, and `evaluate-ai-feature` at `1693662a2f3bac4fad57c8b5d901f7e894946253`. Final-candidate public-origin verification for `review-product-decision` remains pending. These are package- and client-version-scoped observations, not releases or cross-client compatibility claims.
+Observed synthetic behavioral evidence is recorded for all four packages. Public-source standalone extraction and scoped Codex CLI checks are verified for `review-product-decision` at immutable commit `5acb3900a7dab7c638b5a35dc0a71abdd2694761`, `assess-agent-autonomy` at `33a67ee942f02780981c8d526f4251ccc1967078`, `review-api-product-change` at `585a7fc59bbd21671ceb67be086938a6010c6df2`, and `evaluate-ai-feature` at `1693662a2f3bac4fad57c8b5d901f7e894946253`. These are package- and client-version-scoped observations, not releases or cross-client compatibility claims.
 
 ## Repository boundary
 
@@ -49,7 +49,7 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md), [the authoring contract](docs/authoring
 
 ## Compatibility and installation
 
-The `assess-agent-autonomy`, `review-api-product-change`, and `evaluate-ai-feature` packages were anonymously downloaded from immutable public commits, extracted as standalone packages, validated, and checked for positive and near-miss routing with the recorded Codex CLI versions. See the [compatibility record](docs/compatibility.md) and each package's evaluation evidence for exact revisions, hashes, controls, outputs, and limitations.
+All four packages were anonymously downloaded from immutable public commits, extracted as standalone packages, validated, and checked for positive and near-miss routing with the recorded Codex CLI versions. See the [compatibility record](docs/compatibility.md) and each package's evaluation evidence for exact revisions, hashes, controls, outputs, and limitations.
 
 ## License
 

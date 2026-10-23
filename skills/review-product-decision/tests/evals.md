@@ -7,6 +7,7 @@ Do not provide this evaluation plan, its rubric, expected answers, or previous o
 ## Candidate and controls
 
 - Public starting revision: `4bac18c9bd4a02f4991db934216e3d273494f38f`; the anonymously retrieved package was byte-identical to the repository package before refinement.
+- Final public revision: `5acb3900a7dab7c638b5a35dc0a71abdd2694761`; anonymous extraction was byte-identical to the merged final package.
 - Final candidate runtime-manifest SHA-256: `4c3722023d74620fb4b0e7f356044264ffeec8e521c359922ef7e920e9b5a643`, computed from sorted SHA-256 records for runtime files.
 - Final runtime files: `SKILL.md` `13c8b7c0b61dcd19cbad521d916e53424de3656ef79494906769fb75ed6d7a1d`; `references/decision-criteria.md` `e3281596505cf5806c620763f60eb51809fb60cd3137ebf1af65dc5b83746abb`; `references/examples.md` `78291f7d60135844fc076cb7fb6946435c3796ea4e025ef4c62f336864094dd0`; `assets/decision-brief-template.md` `52bdae6a4cf6a33144e17d5712c4d41298a53de2a0ac83677e1401e462f48e1c`.
 - Client/model/settings: Codex CLI `0.163.0-alpha.11.1`, `gpt-6.1-sol`, high reasoning, read-only sandbox, ephemeral sessions, and `web_search="disabled"`.
@@ -218,6 +219,19 @@ The planned final order was followed: C1 ON then OFF; C2 OFF then ON. Scorers sa
 - Temporary command traces establish loading and isolation but are not repository artifacts because they contain machine-local paths. Complete final messages and reviewer reports are public.
 - No result proves general product-decision quality, statistical significance, cross-client compatibility, or real-world outcomes.
 
+### Final public-origin and named-client verification
+
+The final package was anonymously downloaded from public merge commit `5acb3900a7dab7c638b5a35dc0a71abdd2694761` on 2026-10-23. Runtime hashes matched the final manifest above. The extracted package passed the Agent Skills reference validator and Skill Creator quick validation.
+
+Two additional fresh Codex CLI `0.163.0-alpha.11.1` sessions used the same model, reasoning, sandbox, no-web and skill-isolation controls. Both workspaces contained only the anonymously retrieved final package:
+
+| Case | Prompt | Observed load | Result | Words | Last-message SHA-256 |
+| --- | --- | --- | --- | ---: | --- |
+| Positive | “Build an AI onboarding guide or simplify setup? One engineer, poor activation.” | Read final `SKILL.md` | **Pass** | 119 | `7364ef9abe2a73a77404363196b436d84b9afc0a380bdc1c8767354ff795db07` |
+| Near miss | “Write user stories for the already-approved redesign.” | Did not read the skill | **Pass** | 35 | `36b2d1e42631f77be75d20cf7306b8de6811bf61bf0fcf16665e13dff8088c12` |
+
+Complete outputs are in [`observed-results.md`](observed-results.md#final-public-origin-client-outputs). The near-miss client listed `AGENTS.md` filenames under the broader temporary directory while looking for repository instructions, but opened none of them and read no skill file; the response remained scoped to the empty test workspace. This is a filesystem-isolation limitation, not hidden content evidence. No web, external integration, or external write was used.
+
 ## Current evidence
 
 | Gate | Result |
@@ -229,7 +243,7 @@ The planned final order was followed: C1 ON then OFF; C2 OFF then ON. Scorers sa
 | Automatic routing T1–T3 and N1–N5 | **Pass** — 3/3 positive loads, 5/5 near-miss non-loads; frontmatter unchanged by final refinement |
 | Behavior B1–B7 and interaction I1–I6 | **Pass** — 7/7 behavior, 6/6 interaction, no blocking failure, after targeted B1 refinement |
 | Controlled comparisons C1–C2, ON versus OFF | **C1 ON better narrowly; C2 ON better** — two blind scorers per final pair, no blocking failure |
-| Standalone installation of final candidate | **Not run** — the public starting package was retrieved and validated before refinement |
-| Named client/version compatibility for final candidate | **Not claimed** pending public-origin verification after merge |
+| Standalone installation of final candidate | **Pass** — anonymous extraction from public commit `5acb3900a7dab7c638b5a35dc0a71abdd2694761`; bytes and validators matched |
+| Named client/version compatibility for final candidate | **Pass, scoped** — Codex CLI `0.163.0-alpha.11.1`, one positive activation and one near miss |
 
 Only actual runs may change these statuses. Do not present expected behavior as observed evidence.
