@@ -1,17 +1,25 @@
 # Product & AI Skills
 
-Focused Agent Skills for better product decisions.
+Four Agent Skills for recurring product decisions: what to build, how much autonomy to give an agent, how to change an API safely, and how to evaluate an AI feature.
 
-## Current status
+They are meant to make assumptions, missing evidence, and decision boundaries visible. Each skill is a self-contained package with documented evaluation evidence, not a prompt that claims to have the answer.
 
-This repository contains four Agent Skill packages, public authoring and evaluation guidance, and deterministic validation tooling:
+## Explore the skills
 
-- [`review-product-decision`](skills/review-product-decision/SKILL.md) reviews an unresolved consequential product choice and produces a concise, conditional Decision Brief.
-- [`assess-agent-autonomy`](skills/assess-agent-autonomy/SKILL.md) recommends action-level autonomy, approval, enforcement, recovery, and rollout boundaries for AI agents.
-- [`review-api-product-change`](skills/review-api-product-change/SKILL.md) reviews an existing API change for per-consumer compatibility, migration, developer experience, and staged rollout.
-- [`evaluate-ai-feature`](skills/evaluate-ai-feature/SKILL.md) designs task-level AI feature evaluations and interprets versioned evidence into calibrated release-readiness recommendations.
+- [**Review a product decision**](skills/review-product-decision/SKILL.md) — Compare options, constraints and evidence before committing to an investment or direction.
+- [**Assess agent autonomy**](skills/assess-agent-autonomy/SKILL.md) — Decide which actions an agent can take, what requires approval, and how to recover from failures.
+- [**Review an API product change**](skills/review-api-product-change/SKILL.md) — Consider existing consumers, compatibility, migration paths and rollout.
+- [**Evaluate an AI feature**](skills/evaluate-ai-feature/SKILL.md) — Define meaningful task-level evaluation and interpret evidence before release.
 
-Observed synthetic behavioral evidence is recorded for all four packages. Public-source standalone extraction and scoped Codex CLI checks are verified for `review-product-decision` at immutable commit `5acb3900a7dab7c638b5a35dc0a71abdd2694761`, `assess-agent-autonomy` at `33a67ee942f02780981c8d526f4251ccc1967078`, `review-api-product-change` at `585a7fc59bbd21671ceb67be086938a6010c6df2`, and `evaluate-ai-feature` at `1693662a2f3bac4fad57c8b5d901f7e894946253`. These are package- and client-version-scoped observations, not releases or cross-client compatibility claims.
+## An example
+
+Suppose a team is deciding whether to build a custom reporting dashboard or start with a simpler export. A few requests have come from Sales, but the team has little evidence of how often the reports would be used.
+
+That is a question for [`review-product-decision`](skills/review-product-decision/SKILL.md). The skill is designed to return a short, conditional Decision Brief: a recommendation, the material trade-off, what is known versus assumed, and the next check or decision that matters. This is an illustrative scenario, not a claimed test result.
+
+## Try one
+
+Read the relevant [skill instructions](skills/) and the [verified installation and compatibility evidence](docs/compatibility.md) before adding a package to your AI client. The documented tests cover specific package revisions and Codex CLI versions; they are not a promise of compatibility with every client.
 
 ## Repository boundary
 
